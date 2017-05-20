@@ -1,0 +1,391 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     15081,        383]
+NotebookOptionsPosition[     14335,        353]
+NotebookOutlinePosition[     14689,        369]
+CellTagsIndexPosition[     14646,        366]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Linear Regression - Demo", "Section",
+ CellChangeTimes->{{3.696964373994011*^9, 3.696964382042287*^9}, {
+  3.696964568004011*^9, 3.696964570491105*^9}}],
+
+Cell["\<\
+Define function to compute linear regressor.
+(This is not a very sophisticated implementation -- it is not numerically \
+stable for large degrees, but it\[CloseCurlyQuote]s probably simpler to \
+explain)\
+\>", "Text",
+ CellChangeTimes->{{3.696856139413005*^9, 3.696856170177741*^9}, 
+   3.696964397757225*^9, {3.696964573013207*^9, 3.696964613893878*^9}, {
+   3.6969647241201477`*^9, 3.6969647452154617`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Vandermonde", "[", 
+   RowBox[{
+    RowBox[{"a_List", "?", "VectorQ"}], ",", 
+    RowBox[{"b_List", "?", "VectorQ"}]}], "]"}], ":=", 
+  RowBox[{"Outer", "[", 
+   RowBox[{"Power", ",", "a", ",", "b"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"mypoly", "[", 
+    RowBox[{"deg_", ",", "lam_"}], "]"}], ":=", "\[IndentingNewLine]", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"X", ",", "A", ",", "b", ",", "th"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"X", " ", "=", " ", 
+       RowBox[{"Vandermonde", "[", 
+        RowBox[{"p", ",", 
+         RowBox[{"Range", "[", 
+          RowBox[{"0", ",", "deg"}], "]"}]}], "]"}]}], " ", ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"A", " ", "=", " ", 
+       RowBox[{"ArrayFlatten", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", "X", "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Sqrt", "[", "lam", "]"}], 
+            RowBox[{"IdentityMatrix", "[", 
+             RowBox[{"deg", "+", "1"}], "]"}]}], "}"}]}], "}"}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"b", " ", "=", " ", 
+       RowBox[{"y", " ", "~", "Join", "~", " ", 
+        RowBox[{"Array", "[", 
+         RowBox[{
+          RowBox[{"0", "&"}], ",", 
+          RowBox[{"deg", "+", "1"}]}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+      
+      RowBox[{"th", " ", "=", " ", 
+       RowBox[{"LeastSquares", "[", 
+        RowBox[{"A", ",", "b"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Sum", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"th", "[", 
+          RowBox[{"[", 
+           RowBox[{"k", "+", "1"}], "]"}], "]"}], " ", 
+         RowBox[{"t", "^", "k"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"k", ",", "0", ",", "deg"}], " ", "}"}]}], "]"}]}]}], 
+    "]"}]}], ";"}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.6968168919349546`*^9, 3.6968168928065023`*^9}}],
+
+Cell["This is the function that defines the \[OpenCurlyDoubleQuote]true\
+\[CloseCurlyDoubleQuote] model.", "Text",
+ CellChangeTimes->{{3.696964409338151*^9, 3.6969644381727867`*^9}, 
+   3.696964620692412*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f", "[", "t_", "]"}], " ", ":=", " ", 
+  RowBox[{
+   RowBox[{"20", " ", 
+    RowBox[{"Sin", "[", 
+     RowBox[{"5", " ", "t"}], "]"}]}], "+", 
+   RowBox[{"8", 
+    RowBox[{"Exp", "[", 
+     RowBox[{"3", "t"}], "]"}], " "}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.696852172727682*^9, 3.696852180391672*^9}}],
+
+Cell["Compute training data and test data:", "Text",
+ CellChangeTimes->{{3.6968560943287573`*^9, 3.6968561342333307`*^9}, 
+   3.696964677991747*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"n", " ", "=", " ", "35"}], ";"}], "  ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Number", " ", "of", " ", "training", " ", "data", " ", "points"}],
+    " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"p", " ", "=", " ", 
+   RowBox[{"RandomReal", " ", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", "n"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"noise1", " ", "=", " ", 
+   RowBox[{"RandomVariate", "[", 
+    RowBox[{
+     RowBox[{"NormalDistribution", "[", "]"}], ",", "n"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"y", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"f", "[", "p", "]"}], "+", 
+    RowBox[{"15", " ", "noise1"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"p1", "=", 
+    RowBox[{"ListPlot", "[", 
+     RowBox[{
+      RowBox[{"Transpose", "[", 
+       RowBox[{"{", 
+        RowBox[{"p", ",", "y"}], "}"}], "]"}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", "Orange"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"m", "=", "3000"}], ";"}], "  ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Number", " ", "of", " ", "test", " ", "data", " ", "points"}], 
+   " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"q", " ", "=", " ", 
+   RowBox[{"RandomReal", " ", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", "m"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"noise2", " ", "=", " ", 
+   RowBox[{"RandomVariate", "[", 
+    RowBox[{
+     RowBox[{"NormalDistribution", "[", "]"}], ",", "m"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"y2", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"f", "[", "q", "]"}], "+", 
+    RowBox[{"15", " ", "noise2"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"p2", "  ", "=", 
+    RowBox[{"ListPlot", "[", 
+     RowBox[{
+      RowBox[{"Transpose", "[", 
+       RowBox[{"{", 
+        RowBox[{"q", ",", "y2"}], "}"}], "]"}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", "Blue"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Show", "[", 
+    RowBox[{"p1", ",", 
+     RowBox[{"Plot", "[", 
+      RowBox[{
+       RowBox[{"f", "[", "t", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", 
+         RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", "Blue"}]}], "]"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Full"}]}], "]"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]"}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.696778503596879*^9, 3.6967786772814093`*^9}, {
+   3.696778748760672*^9, 3.69677888709324*^9}, {3.696783815153717*^9, 
+   3.696783818846307*^9}, {3.696784170645774*^9, 3.696784216819746*^9}, {
+   3.6967843439974127`*^9, 3.6967843479399977`*^9}, {3.6967843813995857`*^9, 
+   3.696784414887526*^9}, {3.696784466129672*^9, 3.696784487692107*^9}, 
+   3.6968165451681023`*^9, {3.6968167373326607`*^9, 3.696816747459815*^9}, {
+   3.696816862654529*^9, 3.696816869964858*^9}, {3.696816950922027*^9, 
+   3.696816958298848*^9}, {3.696817114777986*^9, 3.69681711505059*^9}, {
+   3.6968172731966753`*^9, 3.69681727333908*^9}, {3.6968388298766727`*^9, 
+   3.696838829981738*^9}, {3.696838938211165*^9, 3.6968389390146227`*^9}, {
+   3.696839166666204*^9, 3.696839212190085*^9}, {3.6968392465270157`*^9, 
+   3.6968392466059227`*^9}, {3.6968520446837893`*^9, 3.696852263132765*^9}, {
+   3.696852333420226*^9, 3.696852342639595*^9}, {3.696852395030796*^9, 
+   3.696852428873474*^9}, {3.696852467471333*^9, 3.696852468474101*^9}, {
+   3.696852598869397*^9, 3.696852604433198*^9}, {3.696853066441657*^9, 
+   3.696853107165537*^9}, {3.696856406786983*^9, 3.696856407641943*^9}, {
+   3.6969646821193857`*^9, 3.6969647037713747`*^9}}],
+
+Cell["\<\
+Main routine, interactive plot.
+Here \[OpenCurlyDoubleQuote]deg\[CloseCurlyDoubleQuote] is the dimension of \
+the space of features (recall that the features are of the form \
+[1,z,....z^(d-1)].
+The regularization parameter is \[OpenCurlyDoubleQuote]lam\
+\[CloseCurlyDoubleQuote].\
+\>", "Text",
+ CellChangeTimes->{{3.696964455114725*^9, 3.696964468110983*^9}, {
+  3.6969646246107683`*^9, 3.696964669794289*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Show", "[", 
+    RowBox[{"p1", ",", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"test", "\[Equal]", "1"}], ",", "p2", ",", 
+       RowBox[{"{", "}"}]}], "]"}], ",", 
+     RowBox[{"Plot", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"mypoly", "[", 
+         RowBox[{"deg", ",", "lam"}], "]"}], " ", "//", " ", "Evaluate"}], 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", 
+         RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Red", ",", 
+          RowBox[{"Thickness", "[", ".008", "]"}]}], "}"}]}]}], "]"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", 
+      RowBox[{"Scaled", "[", ".85", "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"deg", ",", "1", ",", "20", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"lam", ",", "0", ",", "200"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"test", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.696783799553258*^9, 3.696783805403013*^9}, {
+   3.696815113117342*^9, 3.69681516966924*^9}, {3.696815379027027*^9, 
+   3.6968154548010283`*^9}, {3.6968156299974833`*^9, 
+   3.6968156362999496`*^9}, {3.6968156711551523`*^9, 3.696815676442309*^9}, {
+   3.696815719242387*^9, 3.6968157868533297`*^9}, {3.6968159268584642`*^9, 
+   3.696815927389009*^9}, {3.696815968833091*^9, 3.6968160005012913`*^9}, {
+   3.696816178005299*^9, 3.696816227511632*^9}, {3.696816286654846*^9, 
+   3.696816296304657*^9}, {3.6968163626253633`*^9, 3.696816408031055*^9}, {
+   3.69681649892671*^9, 3.6968164991562977`*^9}, {3.696816562696229*^9, 
+   3.696816562750865*^9}, {3.696816603258142*^9, 3.696816604325738*^9}, {
+   3.696816691156209*^9, 3.696816709779481*^9}, 3.696816818297249*^9, {
+   3.696817028402616*^9, 3.696817054780912*^9}, {3.6968171570542994`*^9, 
+   3.696817231309465*^9}, {3.696838996883018*^9, 3.69683902317266*^9}, {
+   3.696852276471352*^9, 3.696852303884138*^9}, {3.69685248666016*^9, 
+   3.696852577649411*^9}, {3.696852805696355*^9, 3.6968529110846767`*^9}, {
+   3.696852974563336*^9, 3.696852980009782*^9}, {3.696853035007666*^9, 
+   3.6968530372577*^9}, {3.696855037709937*^9, 3.696855052012059*^9}, {
+   3.6968672900195208`*^9, 3.696867290144554*^9}, {3.696964469738649*^9, 
+   3.69696447056283*^9}, {3.69696478389434*^9, 3.696964784667543*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`deg$$ = 13, $CellContext`lam$$ = 
+    0., $CellContext`test$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`deg$$], 1, 20, 1}, {
+      Hold[$CellContext`lam$$], 0, 200}, {{
+       Hold[$CellContext`test$$], 0}, {0, 1}}}, Typeset`size$$ = {
+    978., {297., 304.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`deg$9381$$ = 
+    0, $CellContext`lam$9382$$ = 0, $CellContext`test$9383$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`deg$$ = 1, $CellContext`lam$$ = 
+        0, $CellContext`test$$ = 0}, "ControllerVariables" :> {
+        Hold[$CellContext`deg$$, $CellContext`deg$9381$$, 0], 
+        Hold[$CellContext`lam$$, $CellContext`lam$9382$$, 0], 
+        Hold[$CellContext`test$$, $CellContext`test$9383$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Show[$CellContext`p1, 
+        If[$CellContext`test$$ == 1, $CellContext`p2, {}], 
+        Plot[
+         Evaluate[
+          $CellContext`mypoly[$CellContext`deg$$, $CellContext`lam$$]], \
+{$CellContext`t, -10, 10}, PlotStyle -> {Red, 
+           Thickness[0.008]}], ImageSize -> Scaled[0.85]], 
+      "Specifications" :> {{$CellContext`deg$$, 1, 20, 
+         1}, {$CellContext`lam$$, 0, 200}, {{$CellContext`test$$, 0}, {0, 
+         1}}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{1033., {375., 382.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{{3.696815135322145*^9, 3.6968151704180117`*^9}, 
+   3.696815642132887*^9, 3.696815677189642*^9, {3.696815730336136*^9, 
+   3.696815787213313*^9}, {3.696816211398855*^9, 3.696816228117045*^9}, 
+   3.696816289480281*^9, {3.6968163896011267`*^9, 3.696816408886878*^9}, 
+   3.6968164996781607`*^9, 3.69681656360247*^9, {3.6968166047514343`*^9, 
+   3.696816622703397*^9}, {3.696816695163769*^9, 3.696816710707926*^9}, 
+   3.696816752874487*^9, 3.6968168188265657`*^9, {3.696817030034223*^9, 
+   3.6968170554642563`*^9}, {3.6968171823191013`*^9, 3.696817232440002*^9}, 
+   3.6968172776916237`*^9, 3.696838881745164*^9, 3.696838944540681*^9, {
+   3.6968389984365664`*^9, 3.6968390252166758`*^9}, 3.696839571849218*^9, {
+   3.6968522859487677`*^9, 3.696852304338653*^9}, {3.696852532178185*^9, 
+   3.696852578249654*^9}, {3.6968528339230337`*^9, 3.696852911840465*^9}, {
+   3.696852976202949*^9, 3.696852980725337*^9}, 3.696853037704517*^9, {
+   3.696853086200904*^9, 3.696853111344507*^9}, {3.696855038437017*^9, 
+   3.6968550526571913`*^9}, 3.696856196027462*^9, 3.696856411038459*^9, 
+   3.6968672913884783`*^9, 3.696964477677307*^9, {3.696964785677923*^9, 
+   3.6969647943732643`*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1353, 832},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.4 for Mac OS X x86 (32-bit, 64-bit Kernel) (April 11, \
+2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 158, 2, 80, "Section"],
+Cell[741, 26, 419, 8, 61, "Text"],
+Cell[1163, 36, 2013, 56, 183, "Input",
+ InitializationCell->True],
+Cell[3179, 94, 208, 3, 37, "Text"],
+Cell[3390, 99, 365, 11, 36, "Input",
+ InitializationCell->True],
+Cell[3758, 112, 148, 2, 37, "Text"],
+Cell[3909, 116, 3908, 100, 288, "Input",
+ InitializationCell->True],
+Cell[7820, 218, 421, 9, 85, "Text"],
+Cell[CellGroupData[{
+Cell[8266, 231, 2501, 52, 57, "Input"],
+Cell[10770, 285, 3537, 64, 777, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
