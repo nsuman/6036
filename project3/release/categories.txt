@@ -1,0 +1,323 @@
+age - age of census participant
+ 0: unknown
+ 1: 0 - 12
+ 2: 13 - 19
+ 3: 20 - 29
+ 4: 30 - 39
+ 5: 40 - 49
+ 6: 50 - 64
+ 7: 65 and above
+
+altlang - language other than English spoken at home?
+ 0: n/a
+ 1: yes
+ 2: no
+
+ancestry1 - primary geographic origin of parents
+ 0: unknown
+ 1: Western Europe (except Spain)
+ 2: Eastern Europe
+ 3: Hispanic (including Spain)
+ 4: West Indies
+ 5: Central and South America (except Hispanic)
+ 6: North Africa and SW Asia
+ 7: Sub-Saharan Africa
+ 8: South Asia
+ 9: Other Asia
+ 10: Pacific Islander
+ 11: North America (except Hispanic)
+
+ancestry2 - secondary geographic origin of parents
+ 0: unknown
+ 1: Western Europe (except Spain)
+ 2: Eastern Europe
+ 3: Hispanic (including Spain)
+ 4: West Indies
+ 5: Central and South America (except Hispanic)
+ 6: North Africa and SW Asia
+ 7: Sub-Saharan Africa
+ 8: South Asia
+ 9: Other Asia
+ 10: Pacific Islander
+ 11: North America (except Hispanic)
+
+birthplace - place of birth
+ 0: US
+ 1: US territories and freely associated states
+ 2: Europe
+ 3: Asia
+ 4: America (non US)
+ 5: Africa
+ 6: Oceania
+
+citizen - cittizenship status
+ 0: born in US
+ 1: born in US territory or freely associated state
+ 2: born abroad of US parents
+ 3: naturlized US citizen
+ 4: not a US citizen
+
+disabled1 - work limiting disability?
+ 0: n/a, under 16
+ 1: yes
+ 2: no
+
+disabled2 - work preventing disability?
+ 0: n/a, under 16
+ 1: yes
+ 2: no
+
+earnings - total personal earnings
+ 0: none
+ 1: negative
+ 2: $1 - $14999
+ 3: $15k - $29999
+ 4: $30k - $59999
+ 5: over $60k
+
+edlevel - highest level of education attained
+ 0: n/a
+ 1: none
+ 2: nursery
+ 3: kindergarten
+ 4: 1st - 4th grade
+ 5: 5th - 8th grade
+ 6: 9th grade
+ 7: 10th grade
+ 8: 11th grade
+ 9: 12th grade, no diploma
+ 10: high school or ged
+ 11: some college
+ 12: associate degree, occupational
+ 13: associate degree, academic
+ 14: bachelors degree
+ 15: masters degree
+ 16: professional degree
+ 17: doctorate degree
+
+employer - class of employment
+ 0: n/a, under 16
+ 1: private, for profit
+ 2: private, non-profit
+ 3: local govt
+ 4: state govt
+ 5: federal govt
+ 6: self-employed, not incorporated
+ 7: self-employed, incorporated
+ 8: working without pay
+ 9: unemployed
+
+english - can speak english?
+ 0: n/a
+ 1: very well
+ 2: well
+ 3: not well
+ 4: no
+
+fertility - number of children birthed
+ 0: n/a, male
+ 1: 0
+ 2: 1
+ 3: 2
+ 4: 3
+ 5: 4
+ 6: 5
+ 7: 6
+ 8: 7
+ 9: 8
+ 10: 9
+ 11: 10
+ 12: 11
+ 13: 12 or more
+
+hispanic - Hispanic origin
+ 0: not Spanish/Hispanic
+ 1: Spanish
+ 2: Mexican
+ 3: Central American
+ 4: South American
+ 5: Latin American
+ 6: Puerto Rican
+ 7: Cuban
+ 8: Dominican
+ 9: Other
+
+immigrant - year of entry into the US
+ 0: born in US
+ 1: 1987 - 1990
+ 2: 1985 - 1986
+ 3: 1982 - 1984
+ 4: 1980 - 1981
+ 5: 1975 - 1979
+ 6: 1970 - 1974
+ 7: 1965 - 1969
+ 8: 1960 - 1964
+ 9: 1950 - 1959
+ 10: before 1950
+
+income - total personal income
+ 0: none
+ 1: negative
+ 2: $1 - $14999
+ 3: $15k - $29999
+ 4: $30k - $59999
+ 5: over $60k
+
+income_farm - has income from farming?
+ 0: no
+ 1: yes
+
+income_invest - has income from investments?
+ 0: no
+ 1: yes
+
+income_pub - has income from public assets?
+ 0: no
+ 1: yes
+
+income_ret - has income from retirement sources (e.g., pension)?
+ 0: no
+ 1: yes
+
+income_selfemp - has income from self-employment?
+ 0: no
+ 1: yes
+
+income_socsec - has income from social security?
+ 0: no
+ 1: yes
+
+income_other - has income not from self-employment/investments/social security/public assets/retirement?
+ 0: no
+ 1: yes
+
+industry - employment industry
+ 0: not employed
+ 1: agriculture, forestry, and fisheries
+ 2: mining
+ 3: construction
+ 4: manufacturing
+ 5: transportation, communications, public utilities
+ 6: wholesale
+ 7: retail
+ 8: services
+ 9: entertainment
+ 10: public administration
+ 11: active duty military
+ 12: other
+
+jobhunt - looking for work?
+ 0: n/a
+ 1: no
+ 2: yes
+
+koreavet - served during Korean conflict?
+ 0: no
+ 1: yes
+
+married - marital status
+ 0: married, separated
+ 1: widowed
+ 2: divorced
+ 3: separated
+ 4: single
+
+military - military service
+ 0: n/a
+ 1: yes, active duty
+ 2: yes, veteran
+ 3: yes, in reserve or national guard
+ 4: no
+
+milyears - number of years served in military
+ 0: 0
+ 1: 1 - 4
+ 2: over 5
+
+occupation - field of work
+ 0: unknown
+ 1: managerial
+ 2: professional specialist
+ 3: service
+ 4: farm
+ 5: craft and repair
+ 6: operator, laborer
+ 7: military
+ 8: other
+
+perscare - personal care limitation?
+ 0: n/a
+ 1: yes
+ 2: no
+
+poverty - below the poverty line?
+ 0: unknown
+ 1: yes
+ 2: no
+
+school - school enrollment
+ 0: n/a under 3 years old
+ 1: no
+ 2: yes, public
+ 3: yes, private
+
+sex - anatomical assignment
+ 0: male
+ 1: female
+
+tempabsent - temporarily absent from work?
+ 0: n/a
+ 1: yes, on layoff
+ 2: yes, on vacation, illness, etc.
+ 3: no
+
+transport - means of transportation to work
+ 0: not a worker
+ 1: car, truck, or van
+ 2: bus
+ 3: streetcar
+ 4: subway
+ 5: railroad
+ 6: ferry
+ 7: taxi
+ 8: motorcycle
+ 9: bicycle
+ 10: walk
+ 11: work from home
+ 12: other
+
+vietvet - served during the first part of Vietnam conflict?
+ 0: no
+ 1: yes
+
+wages - income from wages or salary
+ 0: 0
+ 1: under $15000
+ 2: $15k - $29999
+ 3: $30k - $59999
+ 4: over $60k
+
+weight - personal weight (in lbs)
+ 0: under 50 lbs
+ 1: 50 - 124
+ 2: 125 - 199
+ 3: 200 and over
+
+work_avail - looking for work?
+ 0: under 16 or not looking for work
+ 1: no, already has job
+ 2: no, temporarily ill
+ 3: no, other reasons (e.g., school)
+ 4: yes.
+
+workwk - hours worked per week
+ 0: 0
+ 1: 1 - 29
+ 2: 30 - 39
+ 3: 40
+ 4: 41 - 49
+ 5: over 49 hours
+
+wwiivet - served during WWII?
+ 0: no
+ 1: yes
